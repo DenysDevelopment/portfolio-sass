@@ -13,19 +13,23 @@ interface ModalAddProps {
 	closeModal: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+interface refObject<T> {
+	readonly current: T | null;
+}
+
 export default function ModalAdd({ closeModal }: ModalAddProps) {
-	const fileRef = React.useRef<HTMLInputElement>(null);
-	const nameRef = React.useRef<HTMLInputElement>(null);
-	const descriptionRef = React.useRef<HTMLInputElement>(null);
-	const webURLRef = React.useRef<HTMLInputElement>(null);
-	const loaderRef = React.useRef<HTMLDivElement>(null);
+	const fileRef: refObject<HTMLInputElement> = React.useRef(null);
+	const nameRef: refObject<HTMLInputElement> = React.useRef(null);
+	const descriptionRef: refObject<HTMLInputElement> = React.useRef(null);
+	const webURLRef: refObject<HTMLInputElement> = React.useRef(null);
+	const loaderRef: refObject<HTMLInputElement> = React.useRef(null);
 
 	const [progress, setProgress] = React.useState(0);
 
 	const storage = getStorage();
 	const storageRef = ref(storage, `${new Date().getMilliseconds()}`);
 
-	const writeFile = (file: File) => {
+	const writeFile = (file: any) => {
 		const UploadTask = uploadBytesResumable(storageRef, file);
 
 		UploadTask.on(
@@ -42,14 +46,12 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 					const dbReference = dbRef(getDatabase());
 					get(child(dbReference, `/`)).then((snapshot) => {
 						const db = getDatabase();
-						console.log(snapshot);
-
 						set(dbRef(db, `/`), [
 							...snapshot.val(),
 							{
-								name: nameRef.current.value,
-								description: descriptionRef.current.value,
-								url: webURLRef.current.value,
+								name: nameRef?.current?.value,
+								description: descriptionRef?.current?.value,
+								url: webURLRef?.current?.value,
 								picture: url,
 							},
 						]);
@@ -60,7 +62,8 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 	};
 
 	const addPorjectToPortfolio = () => {
-		writeFile(fileRef.current.files[0]);
+		const file = fileRef?.current?.files[0];
+		writeFile(file);
 	};
 	return (
 		<div className={style.modal}>

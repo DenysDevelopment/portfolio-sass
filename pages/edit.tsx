@@ -10,7 +10,6 @@ import AddPortfolio from '../components/AddPortfolio';
 import ModalAdd from '../components/ModalAdd';
 
 import style from '../styles/portfolio.module.scss';
-import { useRouter } from 'next/dist/client/router';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyAiJKCDzgEJXnYKxpFjtjCs3FBK_Gj0DHg',
@@ -34,7 +33,6 @@ interface projectsTypes {
 const Home: NextPage = () => {
 	const [modalShow, setModalShow] = React.useState(false);
 	const [projects, setProjects] = React.useState<projectsTypes[]>([]);
-	const { query } = useRouter();
 
 	const toggleModal = () => {
 		setModalShow(!modalShow);
@@ -58,7 +56,7 @@ const Home: NextPage = () => {
 					projects.map((project, idx) => (
 						<PortfolioItem {...project} key={`${project.name}_${idx}`} />
 					))}
-				{query !== 'admin' ? <AddPortfolio toggleModal={toggleModal} /> : ''}
+				<AddPortfolio toggleModal={toggleModal} />
 			</div>
 			{modalShow ? <ModalAdd closeModal={closeModal} /> : ''}
 		</Layout>

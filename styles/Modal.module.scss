@@ -1,0 +1,49 @@
+.modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		background: rgba(0, 0, 0, 0.13);
+		backdrop-filter: blur(5px);
+	}
+	&__body {
+		position: relative;
+		z-index: 2;
+		border: 1px solid red;
+		width: 500px;
+		height: 500px;
+		background: #fff;
+		border-radius: 20px;
+		overflow: hidden;
+
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding: 20px;
+	}
+
+	&__close {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		font-size: 30px;
+	}
+}
+
+.loader {
+	height: 5px;
+	background: #000;
+	transition: all 0.3s ease 0s;
+}

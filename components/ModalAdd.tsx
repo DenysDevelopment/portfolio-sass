@@ -18,7 +18,7 @@ interface refObject<T> {
 }
 
 export default function ModalAdd({ closeModal }: ModalAddProps) {
-	const fileRef: refObject<HTMLInputElement> = React.useRef(null);
+	const fileRef: any = React.useRef(null); //TODO: type any replace to other
 	const nameRef: refObject<HTMLInputElement> = React.useRef(null);
 	const descriptionRef: refObject<HTMLInputElement> = React.useRef(null);
 	const webURLRef: refObject<HTMLInputElement> = React.useRef(null);

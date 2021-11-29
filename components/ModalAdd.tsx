@@ -94,6 +94,7 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 					ref={fileRef}
 					placeholder='Добавить фотку'
 					type='file'
+					accept='.png, .jpg, .jpeg, webp, .gif, .svg'
 					className={style['modal__input']}
 				/>
 				<div

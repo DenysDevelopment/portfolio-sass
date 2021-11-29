@@ -42,11 +42,66 @@ const Home: NextPage = () => {
 		<Layout title='Portfolio'>
 			<h1 className={style.title}>Портфолио</h1>
 			<div className={style.wrapper}>
-				{projects.length
-					? projects.map((project, idx) => (
-							<PortfolioItem {...project} key={`${project.name}_${idx}`} />
-					  ))
-					: new Array(10).fill(10).map((item, idx) => <LoaderItem key={idx} />)}
+				{/* {projects.length */}
+				{/* ? projects.map((project, idx) => ( */}
+				{/* <PortfolioItem {...project} key={`${project.name}_${idx}`} /> */}
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+				<PortfolioItem
+					name='teset'
+					description='efesf'
+					url='fsefse'
+					picture=''
+				/>
+
+				{/* )) */}
+				{/* : new Array(10).fill(10).map((item, idx) => <LoaderItem key={idx} />)} */}
 			</div>
 		</Layout>
 	);

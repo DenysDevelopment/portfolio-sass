@@ -19,10 +19,10 @@ export default function PortfolioItem({
 
 	return (
 		<article className={style.article}>
-			<h2>{name}</h2>
 			<div
 				className={style.image}
 				style={{ backgroundImage: `url(${picture})` }}></div>
+			<h2>{name}</h2>
 			<p>{description}</p>{' '}
 			{picture ? <a href={url}>Перейти на страницу</a> : ''}
 		</article>

@@ -44,7 +44,7 @@ const Home: NextPage = () => {
 
 	React.useEffect(() => {
 		const db = getDatabase();
-		const portfolio = ref(db, `/`);
+		const portfolio = ref(db, `/portfolio`);
 		onValue(portfolio, (snapshot) => setProjects(snapshot.val()));
 	}, []);
 

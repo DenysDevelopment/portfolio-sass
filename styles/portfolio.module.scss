@@ -1,10 +1,7 @@
 .wrapper {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	gap: 30px;
-	@media (max-width: 1200px) {
-		grid-template-columns: repeat(4, 1fr);
-	}
 	@media (max-width: 962px) {
 		grid-template-columns: repeat(3, 1fr);
 	}
@@ -24,6 +21,7 @@
 	cursor: pointer;
 	border: 1px solid #000;
 	cursor: pointer;
+	min-height: 300px;
 	@media (any-hover: hover) {
 		&:hover {
 			svg {
@@ -32,6 +30,7 @@
 		}
 	}
 	svg {
+		height: 100%;
 		width: 20%;
 		transition: all 0.3s ease 0s;
 	}

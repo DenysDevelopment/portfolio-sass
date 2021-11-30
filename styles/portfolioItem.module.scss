@@ -4,11 +4,18 @@
 	flex-direction: column;
 	background: rgba(40, 136, 173, 0.158);
 	border-radius: 20px;
-	overflow: hidden;
 	a {
 		margin-top: auto;
 		text-align: center;
 		margin-bottom: 20px;
+		color: rgb(233, 233, 233);
+		transition: all 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				color: #fff;
+				letter-spacing: 0.03em;
+			}
+		}
 		&::before {
 			content: '';
 			position: absolute;
@@ -25,15 +32,25 @@
 		text-overflow: ellipsis;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
-		padding: 10px 20px 0;
+		padding: 0px 20px 0;
 		-webkit-box-orient: vertical;
 	}
 
 	p {
 		padding: 20px;
+		padding-bottom: 0;
 		padding-top: 0;
-		margin-bottom: 20px;
+		margin-bottom: 10px;
+		font-size: 16px;
 	}
+}
+
+.edit {
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translate(-50%, 0);
+	cursor: pointer;
 }
 
 .image {
@@ -42,5 +59,6 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
-	margin-bottom: 10px;
+	overflow: hidden;
+	border-radius: 20px 20px 0 0;
 }

@@ -10,7 +10,7 @@ import { getDatabase, set, ref as dbRef, get, child } from '@firebase/database';
 import style from '../styles/modal.module.scss';
 
 interface ModalAddProps {
-	closeModal: React.MouseEventHandler<HTMLButtonElement>;
+	closeModal: React.MouseEventHandler<HTMLButtonElement> | any;
 }
 
 interface refObject<T> {
@@ -27,7 +27,10 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 	const [progress, setProgress] = React.useState(0);
 
 	const storage = getStorage();
-	const storageRef = ref(storage, `${new Date().getMilliseconds()}`);
+	const storageRef = ref(
+		storage,
+		`${new Date().getDate()}_${new Date().getMilliseconds()}`,
+	);
 
 	const writeFile = (file: any) => {
 		const UploadTask = uploadBytesResumable(storageRef, file);
@@ -44,10 +47,11 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 			() => {
 				getDownloadURL(UploadTask.snapshot.ref).then((url) => {
 					const dbReference = dbRef(getDatabase());
-					get(child(dbReference, `/`)).then((snapshot) => {
+					get(child(dbReference, `/portfolio`)).then((snapshot) => {
 						const db = getDatabase();
-						set(dbRef(db, `/`), [
+						set(dbRef(db, `/portfolio`), [
 							...snapshot.val(),
+
 							{
 								name: nameRef?.current?.value,
 								description: descriptionRef?.current?.value,
@@ -55,6 +59,7 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 								picture: url,
 							},
 						]);
+						closeModal();
 					});
 				});
 			},
@@ -67,10 +72,10 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 	};
 	return (
 		<div className={style.modal}>
-			<div className={style['modal__overlay']}></div>
+			<div className={style['modal__overlay']} onClick={closeModal}></div>
 			<div className={style['modal__body']}>
 				<button className={style['modal__close']} onClick={closeModal}>
-					*
+					&times;
 				</button>
 				<input
 					ref={nameRef}
@@ -97,10 +102,12 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 					accept='.png, .jpg, .jpeg, webp, .gif, .svg'
 					className={style['modal__input']}
 				/>
-				<div
-					className={style.loader}
-					ref={loaderRef}
-					style={{ width: progress + '%' }}></div>
+				<div className={style.loader}>
+					<div
+						ref={loaderRef}
+						style={{ width: progress + '%' }}
+						className={style['loader-bg']}></div>
+				</div>
 				<button onClick={addPorjectToPortfolio}>Добавить</button>
 			</div>
 		</div>

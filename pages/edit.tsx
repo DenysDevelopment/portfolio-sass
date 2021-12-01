@@ -10,6 +10,7 @@ import AddPortfolio from '../components/AddPortfolio';
 import ModalAdd from '../components/ModalAdd';
 
 import style from '../styles/portfolio.module.scss';
+import LoaderItem from '../components/LoaderItem';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyAiJKCDzgEJXnYKxpFjtjCs3FBK_Gj0DHg',
@@ -52,11 +53,14 @@ const Home: NextPage = () => {
 		<Layout title='Portfolio'>
 			<h1 className={style.title}>Портфолио</h1>
 			<div className={style.wrapper}>
-				{projects &&
-					projects.map((project, idx) => (
-						<PortfolioItem {...project} key={`${project.name}_${idx}`} />
-					))}
-				<AddPortfolio toggleModal={toggleModal} />
+				{projects.length
+					? projects.map((project, idx) => (
+							<PortfolioItem {...project} key={`${project.name}_${idx}`} />
+					  ))
+					: new Array(12)
+							.fill(10)
+							.map((_, idx) => <LoaderItem key={`dsd_${idx}`} />)}
+				{projects.length ? <AddPortfolio toggleModal={toggleModal} /> : ''}
 			</div>
 			{modalShow ? <ModalAdd closeModal={closeModal} /> : ''}
 		</Layout>

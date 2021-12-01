@@ -53,9 +53,6 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 							...snapshot.val(),
 
 							{
-								name: nameRef?.current?.value,
-								description: descriptionRef?.current?.value,
-								url: webURLRef?.current?.value,
 								picture: url,
 							},
 						]);
@@ -70,6 +67,7 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 		const file = fileRef?.current?.files[0];
 		writeFile(file);
 	};
+
 	return (
 		<div className={style.modal}>
 			<div className={style['modal__overlay']} onClick={closeModal}></div>
@@ -77,27 +75,44 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 				<button className={style['modal__close']} onClick={closeModal}>
 					&times;
 				</button>
+				<div>
+					<input
+						required
+						autoComplete='off'
+						ref={nameRef}
+						id='name'
+						type='text'
+						className={style['modal__input']}
+					/>
+					<label htmlFor='name'>Назва сайта</label>
+				</div>
+				<div>
+					<input
+						required
+						autoComplete='off'
+						ref={descriptionRef}
+						type='text'
+						id='desc'
+						className={style['modal__input']}
+					/>
+					<label htmlFor='desc'>Описание</label>
+				</div>
+				<div>
+					<input
+						required
+						autoComplete='off'
+						ref={webURLRef}
+						id='url'
+						type='text'
+						className={style['modal__input']}
+					/>
+					<label htmlFor='url'>URL</label>
+				</div>
 				<input
-					ref={nameRef}
-					placeholder='Назва сайта'
-					type='text'
-					className={style['modal__input']}
-				/>
-				<input
-					ref={descriptionRef}
-					placeholder='Описание'
-					type='text'
-					className={style['modal__input']}
-				/>
-				<input
-					ref={webURLRef}
-					placeholder='URL'
-					type='text'
-					className={style['modal__input']}
-				/>
-				<input
+					required
+					autoComplete='off'
 					ref={fileRef}
-					placeholder='Добавить фотку'
+					id='pic'
 					type='file'
 					accept='.png, .jpg, .jpeg, webp, .gif, .svg'
 					className={style['modal__input']}

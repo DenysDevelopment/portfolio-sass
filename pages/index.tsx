@@ -41,12 +41,12 @@ const Home: NextPage = () => {
 	return (
 		<Layout title='Portfolio'>
 			<h1 className={style.title}>Портфолио</h1>
-			<div className={style.wrapper}>
+			<div className={`${style.wrapper} ${projects.length ? style.df : ''}`}>
 				{projects.length
 					? projects.map((project, idx) => (
 							<PortfolioItem {...project} key={`${project.name}_${idx}`} />
 					  ))
-					: new Array(10).fill(10).map((item, idx) => <LoaderItem key={idx} />)}
+					: new Array(12).fill(12).map((_, idx) => <LoaderItem key={idx} />)}
 			</div>
 		</Layout>
 	);

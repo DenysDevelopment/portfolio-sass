@@ -51,8 +51,10 @@ export default function ModalAdd({ closeModal }: ModalAddProps) {
 						const db = getDatabase();
 						set(dbRef(db, `/portfolio`), [
 							...snapshot.val(),
-
 							{
+								name: nameRef?.current?.value,
+								description: descriptionRef?.current?.value,
+								url: webURLRef?.current?.value,
 								picture: url,
 							},
 						]);

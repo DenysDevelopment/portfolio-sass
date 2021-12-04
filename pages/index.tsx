@@ -41,7 +41,7 @@ const Home: NextPage = () => {
 	return (
 		<Layout title='Portfolio'>
 			<h1 className={style.title}>Портфолио</h1>
-			<div className={`${style.wrapper} ${projects.length ? style.df : ''}`}>
+			<div className={`${style.wrapper}`}>
 				{projects.length
 					? projects.map((project, idx) => (
 							<PortfolioItem {...project} key={`${project.name}_${idx}`} />
